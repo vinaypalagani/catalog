@@ -1,0 +1,39 @@
+{% extends 'home.html' %}
+{% block content %}
+<div class="container">
+<form method="post" action="{{url_for('edititem',categoryid = catid,itemid=iid)}}">
+	<h4>edit {{iname}}</h4><br>
+	<div class="form-group">
+      <label for="name">name:</label>
+      <input type="text" class="form-control" id="name" name='iname' value="{{iname}}" required>
+    </div>
+    <div class="form-group">
+      <label for="image">image:</label>
+      <input type="text" class="form-control" id="image" name='iimage' value="{{iimage}}" required>
+    </div>
+    <div class="form-group">
+      <label for="price">price:</label>
+      <input type="number" class="form-control" id="price" name='iprice' value="{{iprice}}" required>
+    </div>
+    <div class="form-group">
+      <label for="weight">weight:</label>
+      <input type="number" class="form-control" id="weight" name='iweight' value="{{iweight}}" required>
+    </div>
+    <div class="form-group">
+      <label for="brand">brand:</label>
+      <input type="text" class="form-control" id="brand" name='ibrand' value="{{ibrand}}" required>
+    </div>
+    <div class="form-group">
+      <label for="age">age group:</label>
+      <input type="text" class="form-control" id="age" name='iagegroup' value="{{iagegroup}}" required>
+    </div>
+    <div class="form-group">
+      <label for="sale">sale package:</label>
+      <input type="number" class="form-control" id="sale" name='isalepackage' value="{{isalepackage}}" required>
+    </div>
+
+	<input type="submit" class="btn btn-success" value="submit">
+	<a href="{{url_for('showitems',categoryid = catid)}}"><input type="button" class="btn btn-warning " value="cancel"></a>
+</form>
+</div>
+{% endblock %}

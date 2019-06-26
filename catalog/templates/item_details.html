@@ -1,0 +1,28 @@
+
+
+{% extends 'home.html' %}
+{% block content %}
+
+<div class="container">
+
+	<div class="card bg-success text-white">
+		
+<div class="media">
+  <div class="media-left">
+    <img src="{{image}}" class="media-object" style="width:260px">
+  </div>
+  <div class="media-body">
+    	<p><h1 class="media-heading">{{iname}}</h1>
+	    <h3>price : Rs{{iprice}}</h3>
+		<h3>weight : {{iweight}}grams</h3>
+		<h3>brand : {{ibrand}}</h3>
+		<h3>age group : {{agegroup}}</h3>
+		<h3>sale package:{{ipackage}}</h3></p>
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+

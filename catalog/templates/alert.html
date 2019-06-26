@@ -1,0 +1,53 @@
+{% extends 'home.html' %}
+
+{% block content %}
+{% if isdeleted %}
+<div class="container">
+	<div class="alert alert-warning alert-dismissible">
+    <a href="{{url_for('showcategory')}}" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>category deleted</strong>
+  </div>
+</div>
+{% endif %}
+{% if isedited %}
+<div class="container">
+	<div class="alert alert-info alert-dismissible">
+    <a href="{{url_for('showcategory')}}" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>category is updated</strong>
+  </div>
+</div>
+{% endif %}
+
+{% if isadded %}
+	<div class="container">
+	<div class="alert alert-success alert-dismissible">
+    <a href="{{url_for('showcategory')}}" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Successfully Added category</strong>
+  </div>
+</div>
+{% endif %}
+{% if itemadded %}
+	<div class="container">
+	<div class="alert alert-success alert-dismissible">
+    <a href="{{url_for('showitems',categoryid = cat_id)}}" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Successfully Added Item</strong>
+  </div>
+</div>
+{% endif %}
+{% if itemedited %}
+<div class="container">
+	<div class="alert alert-info alert-dismissible">
+    <a href="{{url_for('showitems',categoryid = cat_id)}}" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>item is updated</strong>
+  </div>
+</div>
+{% endif %}
+{% if itemdeleted %}
+<div class="container">
+	<div class="alert alert-warning alert-dismissible">
+    <a href="{{url_for('showitems',categoryid = cat_id)}}" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>item deleted</strong>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

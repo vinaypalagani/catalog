@@ -1,0 +1,40 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="container">
+
+	<div class="panel-body"  style="background-color:yellow"><h1>game categories</h1>
+	</div>
+<a href="{{url_for('newcategory')}}"/><input type=button value='ADD CATEGORY'  class="btn btn-success"></a>
+{% if categories %}
+<div class="row">
+	{% for each in categories %}
+	<div class="col-sm-3">	
+		<div class="card  bg-info text-white">
+			<div class="card-Header"><h3>{{each.sport_name}}</h3>
+			</div>
+			 <div class="card-footer text-center" >
+			 	<div class="btn-group "> 
+			 		<a href="{{url_for('deletecategory',category_id=each.sport_id)}}"/>
+			 			<input type="button"  value='Delete'  class="btn btn-danger">
+			 		</a>
+				  	<a href="{{url_for('editcategory',category_id=each.sport_id)}}"/>
+				  		<input type="button" value='Edit'  class="btn btn-warning">
+				  	</a>
+				  <a href="{{url_for('showitems',categoryid =each.sport_id) }}"/>
+				  	<input type="button" value='Show items'  class="btn btn-info">
+				  </a>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+	{% else %}
+		no items found
+{% endif %}
+</div>
+{% endblock %}
+
+
+

@@ -1,0 +1,30 @@
+$('button[name="remove_levels"]').on('click', function(e) {
+  var $form = $(this).closest('form');
+  e.preventDefault();
+  $('#confirm').modal({
+      backdrop: 'static',
+      keyboard: false
+  })
+  .on('click', '#delete', function(e) {
+      $form.trigger('submit');
+    });
+});
+
+<link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap.js"></script>
+<form action="#" method="POST">
+  <button class='btn btn-danger btn-xs' type="submit" name="remove_levels" value="delete"><span class="fa fa-times"></span> delete</button>
+</form>
+
+<div id="confirm" class="modal hide fade">
+  <div class="modal-body">
+    Are you sure?
+  </div>
+  <div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+    <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+  </div>
+</div>
+
+Expand snippet

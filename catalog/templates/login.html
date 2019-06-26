@@ -1,0 +1,52 @@
+{% extends "home.html" %}
+{%block content%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+<script>
+  function start() {
+    gapi.load('auth2', function() {
+      auth2 = gapi.auth2.init({
+        client_id: '487128136550-gpbbjfsfq735vkt5jsv0754jh8gvb111.apps.googleusercontent.com'
+      });
+    });
+  }
+</script>
+
+
+<!--In the <body> tag, add the below button and div-->
+
+<button id="signinButton">Google Signin</button>
+<div id="result"></div>
+
+<!--Add the below script before the ending </body> tag-->
+
+
+<script>
+  $('#signinButton').click(function() {
+    function signInCallback(authResult){
+      if (authResult['code']){
+        $('#signinButton').attr('style', 'display: none');
+        $.ajax({
+          type: 'POST',
+          url: '/gconnect?state={{STATE}}',
+          headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+          },
+          contentType: 'application/octet-stream; charset=utf-8',
+          success:function(result){
+            $('#result').html('wait a second')
+                  window.location.href = "{{url_for('home')}}";
+          },
+          processData:false,
+          data:authResult['code']
+        });
+      } else{
+        // handle error
+        console.log('There was an error: ' + authResult['error']);
+        $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+      }
+    }
+    auth2.grantOfflineAccess().then(signInCallback);
+  });
+</script>
+{%endblock%}

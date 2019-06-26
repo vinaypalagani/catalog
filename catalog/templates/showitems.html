@@ -1,0 +1,38 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+
+
+<div class="container"> 
+<div class="panel panel-default">
+  <div class="panel-body"  style="background-color:lightblue"><h1>Items</h1><a href="{{url_for('newitem',categoryid = cat_id)}}"/><input type=button value='ADD item'  class="btn btn-success"></a></div>
+</div>
+{% if item %}
+   
+  <div class="row-sm-3">
+  	{% for each in item %}
+    <div class="col-sm-3">
+		<div class="panel panel-primary">
+        <div class="panel-heading">{{each.item_name}}</div>
+        <div class="panel-body"><img src="{{each.item_image}}" class="img-responsive" style="width:100%" alt="Image">
+        <h6>Brand : {{each.item_brand}}</h6><h6>Price :Rs {{each.item_price}}/-</h6></div>
+		<div class="panel-footer"><a href="{{url_for('itemdetails',category_id = each.sport_id,itemid = each.item_id)}}" data-toggle="tooltip" title="open"> <h4>show details</h4></a>
+		<a href="{{url_for('deleteitem',categoryid=each.sport_id,itemid=each.item_id)}}" class="btn btn-danger btn-lg">
+          <span class="glyphicon glyphicon-trash"></span> delete 
+        </a>
+        <a href="{{url_for('edititem',categoryid=each.sport_id,itemid=each.item_id)}}" class="btn btn-info btn-lg">
+          <span class=></span> edit
+        </a></div>
+		
+      </div>
+     </div>
+
+     {% endfor %}
+  
+  </div>
+{% else %}
+		no items found 
+{% endif %}
+</div>
+{% endblock %}

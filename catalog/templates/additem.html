@@ -1,0 +1,43 @@
+{% extends 'home.html' %}
+
+{% block content %}
+	<form method="post" action="{{url_for('newitem',categoryid=cat_id)}}">
+<h1>ADD ITEM</h1>
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for="name">name:</label>
+      <input type="text" class="form-control" id="name" name='iname' placeholder="item name" required>
+    </div>
+    <div class="form-group">
+      <label for="image">image:</label>
+      <input type="text" class="form-control" id="image" name='iimage' placeholder="image address" required>
+    </div>
+    <div class="form-group">
+      <label for="number">price:</label>
+      <input type="number" class="form-control" id="number" name='iprice' placeholder="price" required>
+    </div>
+    <div class="form-group">
+      <label for="weight">weight:</label>
+      <input type="number" class="form-control" id="weight" name='iweight' placeholder="weight" required>
+    </div>
+    <div class="form-group">
+      <label for="brand">brand:</label>
+      <input type="text" class="form-control" id="brand" name='ibrand' placeholder="brand" required>
+    </div>
+<div class="form-group">
+      <label for="age">age group:</label>
+      <input type="text" class="form-control" id="age" name='iagegroup' placeholder="age group" required>
+    </div>
+<div class="form-group">
+      <label for="sale">sale package:</label>
+      <input type="number" class="form-control" id="sale" name='isalepackage' placeholder=0 required>
+    </div>
+<div>
+	<div class="text-center>">
+	<input type="submit" value="submit" class="btn btn-success"/>
+	<a href="{{url_for('showitems',categoryid = cat_id)}}"><button type="button" class="btn btn-warning">cancel</button>
+	</div>
+</div>
+</form>
+{% endblock %}

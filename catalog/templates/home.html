@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>sports items page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <meta name="google-signin-client_id" content="487128136550-gpbbjfsfq735vkt5jsv0754jh8gvb111.apps.googleusercontent.com">
+</head>
+<style type="text/css">
+
+</style>
+<body>
+
+
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                       
+      </button>
+      <a class="navbar-brand" href="#">SP</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="{{url_for('home')}}">Home</a></li>
+        <li><a href="{{url_for('showcategory')}}">Categories</a></li>
+        <li><a href="{{url_for('contact')}}">Contact</a></li>
+
+
+
+
+
+
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      	{% if not session.get('email',0) %}
+        <li><a href="{{url_for('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% else %}
+        <li><a href="{{url_for('glogout')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% with messages = get_flashed_messages() %}
+{% for message in messages %}
+<div class="container">
+	<div class="alert alert-info alert-dismissible">
+    <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{message}}</strong>
+  </div>
+</div>
+
+{% endfor %}
+{% endwith %}
+{% block content %}
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-body"  style="background-color:orange"><h1>WELCOME TO SPORTS ZONE</h1></div>
+</div>
+{% if items %}
+	<div class="container">    
+    <div class="row-sm-4">
+  	{% for each in items %}
+    <div class="col-sm-3">
+		<div class="panel panel-primary">
+        <div class="panel-heading">{{each.item_name}}</div>
+        <div class="panel-body"><img src="{{each.item_image}}" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer"><h5>Brand : {{each.item_brand}}</h5><h5>Price :Rs {{each.item_price}}/-</h5></div>
+		<a href="{{url_for('itemdetails',category_id = each.sport_id,itemid = each.item_id)}}" data-toggle="tooltip" title="open"> <h5>show details</h5></a>
+		
+		
+            </div>
+
+     </div>
+	{% endfor %}
+
+{% endif %}
+</div>
+{% endblock %}
